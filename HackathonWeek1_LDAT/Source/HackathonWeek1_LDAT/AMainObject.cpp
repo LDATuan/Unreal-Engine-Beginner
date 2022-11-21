@@ -21,7 +21,6 @@ AAMainObject::AAMainObject()
 	{
 		Cube->SetStaticMesh(ShapeCube.Object);
 		CurrentMaterial = Cube->GetMaterial(0);
-		// Cube->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f));
 	}
 
 	static ConstructorHelpers::FObjectFinder<UMaterialInterface> BrickMaterialFinder(
@@ -64,5 +63,3 @@ void AAMainObject::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	Cube->SetRenderCustomDepth(false);
 }
-
-

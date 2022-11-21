@@ -34,8 +34,8 @@ APMainPlayer::APMainPlayer()
 
 	ElapsedTime = 0.f;
 	TimerEnd = 5.f;
-
 	IsSetMouse = true;
+	
 	//Take control of the default Player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -44,21 +44,14 @@ APMainPlayer::APMainPlayer()
 void APMainPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	UWorld* world = GetWorld();
+	UWorld* World = GetWorld();
 
-	FVector location(0.0f, 0.0f, 0.0f);
-	FRotator rotation(0.0f, 0.0f, 0.0f);
-	FActorSpawnParameters spawnInfo;
-	CubeActor = world->SpawnActor<AAMainObject>(location, rotation, spawnInfo);
+	const FVector Location(0.0f, 0.0f, 0.0f);
+	const FRotator Rotation(0.0f, 0.0f, 0.0f);
+	const FActorSpawnParameters SpawnInfo;
+	CubeActor = World->SpawnActor<AAMainObject>(Location, Rotation, SpawnInfo);
 	SpringArmInstance->SetupAttachment(CubeActor->Cube);
-}
 
-// Called every frame
-void APMainPlayer::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	ElapsedTime += DeltaTime;
-	// GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Cyan, FString::SanitizeFloat(ElapsedTime));
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press Q to rotate Left"));
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press E to rotate Right"));
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press W to increase Size"));
@@ -66,12 +59,20 @@ void APMainPlayer::Tick(float DeltaTime)
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press R to reset Level"));
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Scroll Wheel Up to zoom In"));
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Scroll Wheel Down to zoom Out"));
+}
+
+// Called every frame
+void APMainPlayer::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	ElapsedTime += DeltaTime;
+	
 
 	if (ElapsedTime <= TimerEnd)
 	{
-		FRotator rotate = FRotator(0.0f, 1.f, 0.0f);
-		FQuat fQuat = FQuat(rotate);
-		SpringArmInstance->AddWorldRotation(fQuat, true, nullptr, ETeleportType::None);
+		const FRotator Rotate = FRotator(0.0f, 1.f, 0.0f);
+		const FQuat DeltaRotation = FQuat(Rotate);
+		SpringArmInstance->AddWorldRotation(DeltaRotation, true, nullptr, ETeleportType::None);
 	}
 	else
 	{
