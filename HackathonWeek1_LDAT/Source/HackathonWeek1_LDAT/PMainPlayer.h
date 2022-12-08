@@ -22,7 +22,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class AAMainObject *CubeActor;
-
 	
 
 protected:
@@ -56,4 +55,19 @@ public:
 
 	UFUNCTION()
 	void WheelUp();
+
+	UFUNCTION()
+	void PressESC();
+
+	UFUNCTION()
+	void LeftMousePress();
+
+	UFUNCTION()
+	void LeftMouseRelease();
+	
+	UFUNCTION()
+	void MouseX(float amount);
+
+	UFUNCTION()
+	void MouseY(float amount);
 };

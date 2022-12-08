@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGenericCrashContext>
+<RuntimeProperties>
+<CrashVersion>3</CrashVersion>
+<ExecutionGuid>8F388A12472E928B57D80CB208C07407</ExecutionGuid>
+<CrashGUID>UECC-Windows-437FE44F487BE90054509893E406154F_0000</CrashGUID>
+<IsEnsure>true</IsEnsure>
+<IsStall>false</IsStall>
+<IsAssert>false</IsAssert>
+<CrashType>Ensure</CrashType>
+<ErrorMessage>Ensure condition failed: !bRegistered  [File:D:\build\++UE5\Sync\Engine\Source\Runtime\Engine\Private\Components\SceneComponent.cpp] [Line: 1858] 
+SetupAttachment should only be used to initialize AttachParent and AttachSocketName for a future AttachToComponent. Once a component is registered you must use AttachToComponent. Owner [/Game/StarterContent/Level/Map_MainLevel.Map_MainLevel:PersistentLevel.PMainPlayer_1], InParent [MainCube], InSocketName [None]
+Stack: 
+0x00007ff6a05d7476 HackathonWeek1_LDAT.exe!USceneComponent::SetupAttachment() []
+0x00007ff69b8ab101 HackathonWeek1_LDAT.exe!APMainPlayer::BeginPlay() [D:\3. TUAN LE\01. Github\Unreal-Engine-Beginner\HackathonWeek1_LDAT\Source\HackathonWeek1_LDAT\PMainPlayer.cpp:59]
+0x00007ff6a0078230 HackathonWeek1_LDAT.exe!AActor::DispatchBeginPlay() []
+0x00007ff6a165742a HackathonWeek1_LDAT.exe!AWorldSettings::NotifyBeginPlay() []
+0x00007ff6a084b4f1 HackathonWeek1_LDAT.exe!AGameStateBase::HandleBeginPlay() []
+0x00007ff6a15d6af2 HackathonWeek1_LDAT.exe!UWorld::BeginPlay() []
+0x00007ff6a148a8ef HackathonWeek1_LDAT.exe!UEngine::LoadMap() []
+0x00007ff6a1419c1b HackathonWeek1_LDAT.exe!UEngine::Browse() []
+0x00007ff6a0866344 HackathonWeek1_LDAT.exe!UGameInstance::StartGameInstance() []
+0x00007ff6a08106f2 HackathonWeek1_LDAT.exe!UGameEngine::Start() []
+0x00007ff699456e61 HackathonWeek1_LDAT.exe!FEngineLoop::Init() []
+0x00007ff6994755c1 HackathonWeek1_LDAT.exe!GuardedMain() []
+0x00007ff6994757ba HackathonWeek1_LDAT.exe!GuardedMainWrapper() []
+0x00007ff6994786f6 HackathonWeek1_LDAT.exe!LaunchWindowsStartup() []
+0x00007ff69948a144 HackathonWeek1_LDAT.exe!WinMain() []
+0x00007ff6a27c033a HackathonWeek1_LDAT.exe!__scrt_common_main_seh() [D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288]
+0x00007ffa957174b4 KERNEL32.DLL!UnknownFunction []
+0x00007ffa967226a1 ntdll.dll!UnknownFunction []
+</ErrorMessage>
+<CrashReporterMessage></CrashReporterMessage>
+<ProcessId>2408</ProcessId>
+<SecondsSinceStart>0</SecondsSinceStart>
+<IsInternalBuild>false</IsInternalBuild>
+<IsPerforceBuild>false</IsPerforceBuild>
+<IsSourceDistribution>false</IsSourceDistribution>
+<GameName>UE-HackathonWeek1_LDAT</GameName>
+<ExecutableName>HackathonWeek1_LDAT</ExecutableName>
+<BuildConfiguration>Development</BuildConfiguration>
+<GameSessionID></GameSessionID>
+<PlatformName>Windows</PlatformName>
+<PlatformNameIni>Windows</PlatformNameIni>
+<EngineMode>Game</EngineMode>
+<EngineModeEx>Unset</EngineModeEx>
+<DeploymentName></DeploymentName>
+<EngineVersion>5.1.0-23058290+++UE5+Release-5.1</EngineVersion>
+<CommandLine> HackathonWeek1_LDAT</CommandLine>
+<LanguageLCID>0</LanguageLCID>
+<AppDefaultLocale>en-US</AppDefaultLocale>
+<BuildVersion>++UE5+Release-5.1-CL-23058290</BuildVersion>
+<Symbols>**UE5*Release-5.1-CL-23058290-Win64-Development</Symbols>
+<IsUERelease>false</IsUERelease>
+<IsRequestingExit>false</IsRequestingExit>
+<UserName></UserName>
+<BaseDir>D:/3. TUAN LE/01. Github/Unreal-Engine-Beginner/HackathonWeek1_LDAT/Run/Windows/HackathonWeek1_LDAT/Binaries/Win64/</BaseDir>
+<RootDir>D:/3. TUAN LE/01. Github/Unreal-Engine-Beginner/HackathonWeek1_LDAT/Run/Windows/</RootDir>
+<MachineId>7800E4A141188471E5BE6C9C56456C3A</MachineId>
+<LoginId>7800e4a141188471e5be6c9c56456c3a</LoginId>
+<EpicAccountId>70371b85f2a34fe2a2afb8373ef66760</EpicAccountId>
+<SourceContext></SourceContext>
+<UserDescription></UserDescription>
+<UserActivityHint></UserActivityHint>
+<CrashDumpMode>0</CrashDumpMode>
+<GameStateName></GameStateName>
+<Misc.NumberOfCores>4</Misc.NumberOfCores>
+<Misc.NumberOfCoresIncludingHyperthreads>8</Misc.NumberOfCoresIncludingHyperthreads>
+<Misc.Is64bitOperatingSystem>1</Misc.Is64bitOperatingSystem>
+<Misc.CPUVendor>GenuineIntel</Misc.CPUVendor>
+<Misc.CPUBrand>Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz</Misc.CPUBrand>
+<Misc.PrimaryGPUBrand>NVIDIA GeForce GTX 750 Ti</Misc.PrimaryGPUBrand>
+<Misc.OSVersionMajor>Windows 10 (21H2) [10.0.19044.2251]</Misc.OSVersionMajor>
+<Misc.OSVersionMinor></Misc.OSVersionMinor>
+<MemoryStats.TotalPhysical>17123450880</MemoryStats.TotalPhysical>
+<MemoryStats.TotalVirtual>34303320064</MemoryStats.TotalVirtual>
+<MemoryStats.PageSize>4096</MemoryStats.PageSize>
+<MemoryStats.TotalPhysicalGB>16</MemoryStats.TotalPhysicalGB>
+<MemoryStats.AvailablePhysical>2822377472</MemoryStats.AvailablePhysical>
+<MemoryStats.AvailableVirtual>8744681472</MemoryStats.AvailableVirtual>
+<MemoryStats.UsedPhysical>432128000</MemoryStats.UsedPhysical>
+<MemoryStats.PeakUsedPhysical>438390784</MemoryStats.PeakUsedPhysical>
+<MemoryStats.UsedVirtual>533880832</MemoryStats.UsedVirtual>
+<MemoryStats.PeakUsedVirtual>533880832</MemoryStats.PeakUsedVirtual>
+<MemoryStats.bIsOOM>0</MemoryStats.bIsOOM>
+<MemoryStats.OOMAllocationSize>0</MemoryStats.OOMAllocationSize>
+<MemoryStats.OOMAllocationAlignment>0</MemoryStats.OOMAllocationAlignment>
+<NumMinidumpFramesToIgnore>6</NumMinidumpFramesToIgnore>
+<CallStack></CallStack>
+<PCallStack>
+
+HackathonWeek1_LDAT  0x00007ff698840000 + 7d97476         
+HackathonWeek1_LDAT  0x00007ff698840000 + 306b101         
+HackathonWeek1_LDAT  0x00007ff698840000 + 7838230         
+HackathonWeek1_LDAT  0x00007ff698840000 + 8e1742a         
+HackathonWeek1_LDAT  0x00007ff698840000 + 800b4f1         
+HackathonWeek1_LDAT  0x00007ff698840000 + 8d96af2         
+HackathonWeek1_LDAT  0x00007ff698840000 + 8c4a8ef         
+HackathonWeek1_LDAT  0x00007ff698840000 + 8bd9c1b         
+HackathonWeek1_LDAT  0x00007ff698840000 + 8026344         
+HackathonWeek1_LDAT  0x00007ff698840000 + 7fd06f2         
+HackathonWeek1_LDAT  0x00007ff698840000 + c16e61          
+HackathonWeek1_LDAT  0x00007ff698840000 + c355c1          
+HackathonWeek1_LDAT  0x00007ff698840000 + c357ba          
+HackathonWeek1_LDAT  0x00007ff698840000 + c386f6          
+HackathonWeek1_LDAT  0x00007ff698840000 + c4a144          
+HackathonWeek1_LDAT  0x00007ff698840000 + 9f8033a         
+KERNEL32             0x00007ffa95700000 + 174b4           
+ntdll                0x00007ffa966d0000 + 526a1           
+</PCallStack>
+<PCallStackHash>0890F809453A7D9BD2D2C25898B1CB25CE106839</PCallStackHash>
+</RuntimeProperties>
+<PlatformProperties>
+<PlatformIsRunningWindows>1</PlatformIsRunningWindows>
+<IsRunningOnBattery>false</IsRunningOnBattery>
+<PlatformCallbackResult>0</PlatformCallbackResult>
+<CrashTrigger>0</CrashTrigger>
+</PlatformProperties>
+<EngineData>
+<MatchingDPStatus>WindowsNo errors</MatchingDPStatus>
+<RHI.IntegratedGPU>false</RHI.IntegratedGPU>
+<RHI.DriverDenylisted>false</RHI.DriverDenylisted>
+<RHI.D3DDebug>false</RHI.D3DDebug>
+<RHI.Aftermath>false</RHI.Aftermath>
+<RHI.IsGPUOverclocked>false</RHI.IsGPUOverclocked>
+<RHI.RHIName>D3D11</RHI.RHIName>
+<RHI.AdapterName>NVIDIA GeForce GTX 750 Ti</RHI.AdapterName>
+<RHI.UserDriverVersion>516.94</RHI.UserDriverVersion>
+<RHI.InternalDriverVersion>31.0.15.1694</RHI.InternalDriverVersion>
+<RHI.DriverDate>7-21-2022</RHI.DriverDate>
+<RHI.FeatureLevel>SM5</RHI.FeatureLevel>
+<RHI.GPUVendor>NVIDIA</RHI.GPUVendor>
+<RHI.DeviceId>1380</RHI.DeviceId>
+<DeviceProfile.Name>Windows</DeviceProfile.Name>
+</EngineData>
+<GameData>
+</GameData>
+</FGenericCrashContext>

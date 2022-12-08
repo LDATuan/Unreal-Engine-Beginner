@@ -1,3 +1,7 @@
+*.log
+*.pdb
+*.ini
+*.zip
 # Prerequisites
 *.d
 

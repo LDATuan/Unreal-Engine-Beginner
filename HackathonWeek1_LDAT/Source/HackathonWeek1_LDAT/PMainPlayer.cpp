@@ -5,6 +5,8 @@
 
 #include "AMainObject.h"
 #include "Camera/CameraComponent.h"
+#include "Components/LineBatchComponent.h"
+#include "GameFramework/GameUserSettings.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -15,6 +17,9 @@ bool IsSetMouse;
 float ZoomFactor = 20.f;
 float MaxZoom = 1000.f;
 float MinZoom = 10.f;
+float RatioRotation =1.3f;
+
+bool IsLeftMousePress;
 
 // Sets default values
 APMainPlayer::APMainPlayer()
@@ -35,7 +40,7 @@ APMainPlayer::APMainPlayer()
 	ElapsedTime = 0.f;
 	TimerEnd = 5.f;
 	IsSetMouse = true;
-	
+	IsLeftMousePress = false;
 	//Take control of the default Player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -44,6 +49,9 @@ APMainPlayer::APMainPlayer()
 void APMainPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GEngine->GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
+
 	UWorld* World = GetWorld();
 
 	const FVector Location(0.0f, 0.0f, 0.0f);
@@ -52,13 +60,16 @@ void APMainPlayer::BeginPlay()
 	CubeActor = World->SpawnActor<AAMainObject>(Location, Rotation, SpawnInfo);
 	SpringArmInstance->SetupAttachment(CubeActor->Cube);
 
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press Q to rotate Left"));
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press E to rotate Right"));
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press W to increase Size"));
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press S to decrease Size"));
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press R to reset Level"));
-	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Scroll Wheel Up to zoom In"));
+	GEngine->ClearOnScreenDebugMessages();
+
 	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Scroll Wheel Down to zoom Out"));
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Scroll Wheel Up to zoom In"));
+
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press R to reset Level"));
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press S to decrease Size"));
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press W to increase Size"));
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press E to rotate Right"));
+	GEngine->AddOnScreenDebugMessage(-1, 60.f, FColor::Cyan, TEXT("Press Q to rotate Left"));
 }
 
 // Called every frame
@@ -66,7 +77,7 @@ void APMainPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	ElapsedTime += DeltaTime;
-	
+
 
 	if (ElapsedTime <= TimerEnd)
 	{
@@ -95,6 +106,12 @@ void APMainPlayer::Tick(float DeltaTime)
 
 				InputComponent->BindAction("WheelDown", IE_Released, this, &APMainPlayer::WheelDown);
 				InputComponent->BindAction("WheelUp", IE_Released, this, &APMainPlayer::WheelUp);
+
+				InputComponent->BindAction("PresESC", IE_Released, this, &APMainPlayer::PressESC);
+				InputComponent->BindAction("LeftMouse", IE_Pressed, this, &APMainPlayer::LeftMousePress);
+				InputComponent->BindAction("LeftMouse", IE_Released, this, &APMainPlayer::LeftMouseRelease);
+				InputComponent->BindAxis("MouseX", this, &APMainPlayer::MouseX);
+				InputComponent->BindAxis("MouseY", this, &APMainPlayer::MouseY);
 			}
 		}
 	}
@@ -131,7 +148,7 @@ void APMainPlayer::SPressed()
 {
 	if (auto const CurrentScale = CubeActor->Cube->GetRelativeScale3D() - FVector(1.f, 1.f, 1.f); CurrentScale.X >= 1.f)
 	{
-		 CubeActor->Cube->SetRelativeScale3D(CurrentScale);
+		CubeActor->Cube->SetRelativeScale3D(CurrentScale);
 	}
 }
 
@@ -155,5 +172,41 @@ void APMainPlayer::WheelUp()
 	if (const float NewArmLength = CurrentArmLength - ZoomFactor; NewArmLength >= MinZoom)
 	{
 		SpringArmInstance->TargetArmLength = NewArmLength;
+	}
+}
+
+void APMainPlayer::PressESC()
+{
+	FGenericPlatformMisc::RequestExit(false);
+}
+
+void APMainPlayer::LeftMousePress()
+{
+	IsLeftMousePress = true;
+	this->bUseControllerRotationYaw = IsLeftMousePress;
+	this->bUseControllerRotationPitch = IsLeftMousePress;
+}
+
+void APMainPlayer::LeftMouseRelease()
+{
+	IsLeftMousePress = false;
+	this->bUseControllerRotationYaw = IsLeftMousePress;
+	this->bUseControllerRotationPitch = IsLeftMousePress;
+}
+
+
+void APMainPlayer::MouseX(float amount)
+{
+	if (IsLeftMousePress && amount!=0)
+	{
+		this->AddControllerYawInput(RatioRotation*amount);
+	}
+}
+
+void APMainPlayer::MouseY(float amount)
+{
+	if (IsLeftMousePress && amount!=0)
+	{
+		this->AddControllerPitchInput(RatioRotation*amount);
 	}
 }
